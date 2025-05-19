@@ -49,22 +49,12 @@
 <script setup lang="ts">
 import axios from 'axios';
 import { Form, Field, ErrorMessage } from 'vee-validate';
-import * as yup from 'yup';
+import schema from '@/customers/schemas';
 
 const emit = defineEmits<{
     (e: 'cancel'): void
     (e: 'save'): void
 }>();
-
-const schema = yup.object({
-    document_number: yup.string().required('El número de documento es requerido'),
-    first_name: yup.string().required('El primer nombre es requerido'),
-    last_name: yup.string().required('El apellido es requerido'),
-    addres: yup.string().required('La dirección es requerida'),
-    birthday: yup.date().required('La fecha de nacimiento es requerida'),
-    phone_number: yup.string().required('El número de teléfono es requerido'),
-    email: yup.string().email('Ingrese un email válido').required('El email es requerido')
-});
 
 const onSubmit = (values: any) => {
     console.log('Valores del formulario:', values);
