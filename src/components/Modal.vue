@@ -6,7 +6,7 @@
                     <h5 class="modal-title">{{ props.title }}</h5>
                     <span class="fs-2 pointer" @click="displayed = false">&times;</span>
                 </div>
-                <div class="modal-body">
+                <div class="modal-body text-start">
                     <slot/>
                 </div>
             </div>
