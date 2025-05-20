@@ -23,7 +23,9 @@
                     <td>{{ customer.name }}</td>
                     <td>{{ customer.price }}</td>
                     <td>{{ customer.stock }}</td>
-                    <td>{{ customer.category_id }}</td>
+                    <td>
+                        {{categories.find(category => category.id === customer.category_id)?.name}}
+                    </td>
                     <td class="d-flex justify-content-evenly gap-2">
                         <button type="button" class="btn btn-danger" @click="deleteRegister(customer.id)">
                             <i class="fa fa-trash" aria-hidden="true"></i>
@@ -38,10 +40,10 @@
         </table>
     </div>
     <Modal title="Crear producto" ref="createModal">
-        <CreateForm @cancel="createModal!.close()" @save="update()" />
+        <CreateForm @cancel="createModal!.close()" @save="update()" :categories="categories"/>
     </Modal>
     <Modal title="Editar producto" ref="editModal">
-        <EditForm @cancel="editModal!.close()" @save="update()" :info="infoEdit!" />
+        <EditForm @cancel="editModal!.close()" @save="update()" :info="infoEdit!" :categories="categories" />
     </Modal>
 </template>
 
@@ -70,6 +72,7 @@ const getProducts = () => {
 
 onMounted(() => {
     getProducts()
+    getCategories()
 })
 
 const deleteRegister = (id: number) => {
@@ -97,5 +100,20 @@ const update = () => {
     getProducts()
     createModal.value?.close()
     editModal.value?.close()
+}
+
+// Category
+import { Category } from '@/categories/types';
+
+const categories = ref<Category[]>([]);
+
+const getCategories = () => {
+    axios.get('http://127.0.0.1:8000/api/categories')
+        .then((response) => {
+            categories.value = response.data;
+        })
+        .catch((error) => {
+            console.error(error);
+        });
 }
 </script>
