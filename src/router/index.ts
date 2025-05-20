@@ -19,7 +19,12 @@ const routes: Array<RouteRecordRaw> = [
     path: '/customers',
     name: 'customers',
     component: () => import('@/customers/pages/index.vue')
-  }
+  },
+  {
+    path: '/paymodes',
+    name: 'paymodes',
+    component: () => import('@/paymodes/pages/index.vue')
+  },
 ]
 
 const router = createRouter({
