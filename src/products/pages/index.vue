@@ -79,6 +79,7 @@ const deleteRegister = (id: number) => {
     axios.delete(`http://127.0.0.1:8000/api/products/${id}`)
         .then((response) => {
             products.value = products.value.filter(customer => customer.id !== id);
+            confirmSucess();
         })
         .catch((error) => {
             console.error(error);
@@ -112,7 +113,6 @@ const getCategories = () => {
     axios.get('http://127.0.0.1:8000/api/categories')
         .then((response) => {
             categories.value = response.data;
-            confirmSucess();
         })
         .catch((error) => {
             console.error(error);
