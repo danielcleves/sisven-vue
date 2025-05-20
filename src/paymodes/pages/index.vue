@@ -51,6 +51,7 @@ import { faTrash, faPencil, faPlus } from '@fortawesome/free-solid-svg-icons'
 import Modal from '@/components/Modal.vue';
 import CreateForm from '@/paymodes/components/createForm.vue';
 import EditForm from '@/paymodes/components/editForm.vue';
+import { confirmSucess } from '@/util';
 
 const paymodes = ref<Paymode[]>([]);
 
@@ -73,6 +74,7 @@ const deleteRegister = (id: number) => {
     axios.delete(`http://127.0.0.1:8000/api/payModes/${id}`)
         .then((response) => {
             paymodes.value = paymodes.value.filter(customer => customer.id !== id);
+            confirmSucess();
         })
         .catch((error) => {
             console.error(error);

@@ -26,6 +26,7 @@ import axios from 'axios';
 import { Form, Field, ErrorMessage } from 'vee-validate';
 import { Paymode } from '@/paymodes/types';
 import schema from '@/paymodes/schemas'
+import { confirmSucess } from '@/util';
 
 const emit = defineEmits<{
     (e: 'cancel'): void
@@ -39,6 +40,7 @@ const onSubmit = (values: any) => {
     axios.put(`http://127.0.0.1:8000/api/payModes/${props.info.id}`, values)
         .then(() => {
             emit('save')
+            confirmSucess();
         })
 };
 </script>

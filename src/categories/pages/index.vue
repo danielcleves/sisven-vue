@@ -51,6 +51,7 @@ import { faTrash, faPencil, faPlus } from '@fortawesome/free-solid-svg-icons'
 import Modal from '@/components/Modal.vue';
 import CreateForm from '@/categories/components/createForm.vue';
 import EditForm from '@/categories/components/editForm.vue';
+import { confirmSucess } from '@/util';
 
 const categories = ref<Category[]>([]);
 
@@ -72,6 +73,7 @@ const deleteRegister = (id: number) => {
     axios.delete(`http://127.0.0.1:8000/api/categories/${id}`)
         .then((response) => {
             categories.value = categories.value.filter(category => category.id !== id);
+            confirmSucess();
         })
         .catch((error) => {
             console.error(error);

@@ -104,6 +104,7 @@ const update = () => {
 
 // Category
 import { Category } from '@/categories/types';
+import { confirmSucess } from '@/util';
 
 const categories = ref<Category[]>([]);
 
@@ -111,6 +112,7 @@ const getCategories = () => {
     axios.get('http://127.0.0.1:8000/api/categories')
         .then((response) => {
             categories.value = response.data;
+            confirmSucess();
         })
         .catch((error) => {
             console.error(error);

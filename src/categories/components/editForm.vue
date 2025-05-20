@@ -26,6 +26,7 @@ import axios from 'axios';
 import { Form, Field, ErrorMessage } from 'vee-validate';
 import { Category } from '@/categories/types';
 import schema from '@/categories/schemas'
+import { confirmSucess } from '@/util';
 
 const emit = defineEmits<{
     (e: 'cancel'): void
@@ -39,6 +40,7 @@ const onSubmit = (values: any) => {
     axios.put(`http://127.0.0.1:8000/api/categories/${props.info.id}`, values)
         .then(() => {
             emit('save')
+            confirmSucess();
         })
 };
 </script>

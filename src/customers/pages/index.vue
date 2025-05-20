@@ -61,6 +61,7 @@ import { faTrash, faPencil, faPlus } from '@fortawesome/free-solid-svg-icons'
 import Modal from '@/components/Modal.vue';
 import CreateForm from '@/customers/components/createForm.vue';
 import EditForm from '@/customers/components/editForm.vue';
+import { confirmSucess } from '@/util';
 
 const customers = ref<Customer[]>([]);
 
@@ -82,6 +83,7 @@ const deleteRegister = (id: number) => {
     axios.delete(`http://127.0.0.1:8000/api/customers/${id}`)
         .then((response) => {
             customers.value = customers.value.filter(customer => customer.id !== id);
+            confirmSucess();
         })
         .catch((error) => {
             console.error(error);

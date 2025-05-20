@@ -44,6 +44,7 @@ import { Product } from '@/products/types';
 import schema from '@/products/schemas'
 import { Category } from '@/categories/types';
 import { ref } from 'vue';
+import { confirmSucess } from '@/util';
 
 const emit = defineEmits<{
     (e: 'cancel'): void
@@ -59,6 +60,7 @@ const onSubmit = (values: any) => {
     axios.put(`http://127.0.0.1:8000/api/products/${props.info.id}`, values)
         .then(() => {
             emit('save')
+            confirmSucess();
         })
 };
 </script>

@@ -50,6 +50,7 @@
 import axios from 'axios';
 import { Form, Field, ErrorMessage } from 'vee-validate';
 import schema from '@/customers/schemas';
+import { confirmSucess } from '@/util';
 
 const emit = defineEmits<{
     (e: 'cancel'): void
@@ -61,6 +62,7 @@ const onSubmit = (values: any) => {
     axios.post('http://127.0.0.1:8000/api/customers', values)
         .then(() => {
             emit('save')
+            confirmSucess();
         })
 };
 </script>
